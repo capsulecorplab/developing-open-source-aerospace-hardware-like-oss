@@ -24,6 +24,7 @@
   "homepage": "https://github.com/capsulecorplab/developing-open-source-aerospace-hardware-like-oss#readme",
   "dependencies": {
     "@asciidoctor/reveal.js": "^5.2.0",
+    "@rse/nunjucks-cli": "^1.5.3",
     "asciidoctor": "^3.0.4"
   }
 }
