@@ -1,0 +1,23 @@
+{
+  "name": "developing-open-source-aerospace-hardware-like-oss",
+  "version": "0.0.0",
+  "description": "Developing Open-Source Aerospace Hardware like OSS",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/capsulecorplab/developing-open-source-aerospace-hardware-like-oss.git"
+  },
+  "keywords": [
+    "docs-as-code",
+    "oshw"
+  ],
+  "author": "Sean Marquez",
+  "license": "CC-BY-4.0",
+  "bugs": {
+    "url": "https://github.com/capsulecorplab/developing-open-source-aerospace-hardware-like-oss/issues"
+  },
+  "homepage": "https://github.com/capsulecorplab/developing-open-source-aerospace-hardware-like-oss#readme"
+}
