@@ -4,6 +4,8 @@
   "description": "Developing Open-Source Aerospace Hardware like OSS",
   "main": "index.js",
   "scripts": {
+    "clean": "rm -rf build",
+    "build": "npm run clean && mkdir build/ && cp -r images/ build/ && cp -r node_modules/ build/ && asciidoctor-revealjs presentation.adoc -D build/",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
