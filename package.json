@@ -19,5 +19,9 @@
   "bugs": {
     "url": "https://github.com/capsulecorplab/developing-open-source-aerospace-hardware-like-oss/issues"
   },
-  "homepage": "https://github.com/capsulecorplab/developing-open-source-aerospace-hardware-like-oss#readme"
+  "homepage": "https://github.com/capsulecorplab/developing-open-source-aerospace-hardware-like-oss#readme",
+  "dependencies": {
+    "@asciidoctor/reveal.js": "^5.2.0",
+    "asciidoctor": "^3.0.4"
+  }
 }
