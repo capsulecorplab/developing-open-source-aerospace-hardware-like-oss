@@ -1,0 +1,3 @@
+* This talk is a kind of summary of the ideas discussed in a paper I co-authored that was featured on the MDPI journal's systems category
+* paper was in context to a CubeSat mission called Sealion - a joint project between the Old Dominion University and Coast Guard Academy, involving experimental payloads, s.a., a "deployable composite structure"
+* the intent was to initially to adopt (what we coined as) a cross between a model-based and docs-as-code approach for capturing software systems requirements, and supporting traceability between requirements and implementation, but has since been extended to capturing the overall development of the hardware itself

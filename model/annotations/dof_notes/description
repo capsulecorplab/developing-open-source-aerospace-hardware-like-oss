@@ -1,0 +1,5 @@
+* Through a series of agile retrospectives, the Shepard team discovered that as the project grew in complexity, the description of the project became unmaintainable
+* e.g., you make one part change and all hell breaks loose trying to find every section of every document where that part is referenced
+* i.e., documents are not *DRY*; they don't conform to *don't repeat yourself*
+* So the conclusion was a need for (not a tool, but rather) a methodology to persisting "souce" of an OSHW project
+* This includes the *bill of materials* data (i.e., the list of parts and tools that need to be procured before you can build the project), the *assembly instructions* needed to put the project together, and any remaining *supporting material* (i.e., CAD files, schematics, operating instructions)

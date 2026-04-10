@@ -1,0 +1,3 @@
+* Without getting too into the weeds of the core DOF data model,
+* OSS tools already have a decade-plus start in terms of solving problems, like version control for branch, forking, and merging a project, or diffing part no. changes in a BOM, or things like dependency management for OSHW projects reused across other projects, albeit as a part or tool
+* Imagine running `npm install arduino-uno` and import all the description to be able to use an arduino-uno as a dependency in your project
