@@ -13,7 +13,7 @@
     "buildPresentationAdoc": "nunjucks -d build/unifiedModel.yaml views/presentation.adoc.njk > build/presentation.adoc",
     "buildPresentationView": "cp -r images/ build/ && cp -r node_modules/ build/ && asciidoctor-revealjs build/presentation.adoc -D build/",
     "build": "npm run clean && npm run createBuildDir && npm run buildPackageYaml && npm run buildModel && npm run buildUnifiedModel && npm run buildPresentationAdoc && npm run buildPresentationView",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "readme": "nunjucks -d package.json views/README.md.njk > README.md"
   },
   "repository": {
     "type": "git",
