@@ -1,0 +1,31 @@
+name: developing-open-source-aerospace-hardware-like-oss
+version: 0.0.0
+description: Developing Open-Source Aerospace Hardware like OSS
+main: index.js
+scripts:
+  clean: rm -rf build
+  createBuildDir: mkdir build/
+  loadModel: yds-load model
+  buildPackageYaml: yq -p json -o yaml package.json > build/package.yaml
+  buildModel: yds-load model > build/model.yaml
+  buildUnifiedModel: yq eval-all '. as $item ireduce ({}; . * $item)' build/package.yaml build/model.yaml > build/unifiedModel.yaml
+  buildPresentationAdoc: nunjucks -d build/unifiedModel.yaml views/presentation.adoc.njk > build/presentation.adoc
+  buildPresentationView: cp -r images/ build/ && cp -r node_modules/ build/ && asciidoctor-revealjs build/presentation.adoc -D build/
+  build: npm run clean && npm run createBuildDir && npm run buildPackageYaml && npm run buildModel && npm run buildUnifiedModel && npm run buildPresentationAdoc && npm run buildPresentationView
+  readme: nunjucks -d package.json views/README.md.njk > README.md
+repository:
+  type: git
+  url: git+https://github.com/capsulecorplab/developing-open-source-aerospace-hardware-like-oss.git
+keywords:
+  - docs-as-code
+  - oshw
+author: Sean Marquez
+license: CC-BY-4.0
+bugs:
+  url: https://github.com/capsulecorplab/developing-open-source-aerospace-hardware-like-oss/issues
+homepage: https://github.com/capsulecorplab/developing-open-source-aerospace-hardware-like-oss#readme
+dependencies:
+  '@asciidoctor/reveal.js': ^5.2.0
+  '@rse/nunjucks-cli': ^1.5.3
+  asciidoctor: ^3.0.4
+  yaml-datastore: github:capsulecorplab/yaml-datastore#dist

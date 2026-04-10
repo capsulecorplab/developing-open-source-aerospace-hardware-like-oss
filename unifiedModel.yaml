@@ -1,0 +1,245 @@
+name: developing-open-source-aerospace-hardware-like-oss
+version: 0.0.0
+description: Developing Open-Source Aerospace Hardware like OSS
+main: index.js
+scripts:
+  clean: rm -rf build
+  createBuildDir: mkdir build/
+  loadModel: yds-load model
+  buildPackageYaml: yq -p json -o yaml package.json > build/package.yaml
+  buildModel: yds-load model > build/model.yaml
+  buildUnifiedModel: yq eval-all '. as $item ireduce ({}; . * $item)' build/package.yaml build/model.yaml > build/unifiedModel.yaml
+  buildPresentationAdoc: nunjucks -d build/unifiedModel.yaml views/presentation.adoc.njk > build/presentation.adoc
+  buildPresentationView: cp -r images/ build/ && cp -r node_modules/ build/ && asciidoctor-revealjs build/presentation.adoc -D build/
+  build: npm run clean && npm run createBuildDir && npm run buildPackageYaml && npm run buildModel && npm run buildUnifiedModel && npm run buildPresentationAdoc && npm run buildPresentationView
+  readme: nunjucks -d package.json views/README.md.njk > README.md
+repository:
+  type: git
+  url: git+https://github.com/capsulecorplab/developing-open-source-aerospace-hardware-like-oss.git
+keywords:
+  - docs-as-code
+  - oshw
+author: Sean Marquez
+license: CC-BY-4.0
+bugs:
+  url: https://github.com/capsulecorplab/developing-open-source-aerospace-hardware-like-oss/issues
+homepage: https://github.com/capsulecorplab/developing-open-source-aerospace-hardware-like-oss#readme
+dependencies:
+  '@asciidoctor/reveal.js': ^5.2.0
+  '@rse/nunjucks-cli': ^1.5.3
+  asciidoctor: ^3.0.4
+  yaml-datastore: github:capsulecorplab/yaml-datastore#dist
+annotations:
+  sealion_mission:
+    description: Sealion Mission
+  cc_by_40_image:
+    description: CC-BY-4.0
+    targetFilePaths:
+      - images/cc-by.svg
+  mbse_with_a_docs_as_code_approach_for_the_sealion_cubesat_mission_image:
+    description: MBSE with a docs-as-code approach for the Sealion cubesate mission
+    targetFilePaths:
+      - >-
+        images/mbse_with_a_docs_as_code_approach_for_the_sealion_cubesat_mission.jpeg
+  sealion_mission_paper_url:
+    description: https://lnkd.in/gRDWqRxU
+  sealion_mission_notes:
+    description: >
+      * This talk is a kind of summary of the ideas discussed in a paper I co-authored that was featured on the MDPI journal's systems category
+
+      * paper was in context to a CubeSat mission called Sealion - a joint project between the Old Dominion University and Coast Guard Academy, involving experimental payloads, s.a., a "deployable composite structure"
+
+      * the intent was to initially to adopt (what we coined as) a cross between a model-based and docs-as-code approach for capturing software systems requirements, and supporting traceability between requirements and implementation, but has since been extended to capturing the overall development of the hardware itself
+
+  cubesats:
+    description: CubeSats
+  lightsail_bread_loaf:
+    description: Planetary Society's Lightsail compared to bread by Justin Jang
+    targetFilePaths:
+      - images/lightsail_bread_loaf.jpg
+  lightsail_artist_concept:
+    description: Lightsail artist concept by NASA Kennedy CC-BY-NC-ND-2.0
+    targetFilePaths:
+      - images/lightsail.jpg
+  lightsail_notes:
+    description: >
+      * Brief history on CubeSats, they're a class of smallscale satellites
+
+      * The specification was designed by CalPoly, literally the size of a loaf of bread
+
+      * The Planetary Society (located here in Pasadena) so far has launched 2 in the form of a Lightsail
+
+      * an idea originally conceived by Louis Freedman (colleague of Carl Sagan)
+
+      * that light, although has no mass, has momentum that can be transferred to a reflective surface
+
+      * thus providing a means of propulsion for lightweight spacecrafts
+
+  cubesats_by_mission_type:
+    description: CubeSats by Mission Type (2000-2021)
+    targetFilePaths:
+      - images/swartwout_data_graph.jpg
+  cubesats_by_mission_type_notes:
+    description: "* This chart briefly describes the popularity in CubeSats across academia, commercial space, and military\n* Hence, CubeSats have become the kind of \"app space\" for space projects\n* And because of their relatively small scale & low-cost, they're an ideal platform developing aerospace hardware in a kind of \"agile development\"/fail-fast culture \n"
+  mach_30_foundation:
+    description: Mach 30 Foundation
+  mach_30_foundation_description:
+    description: Mach 30 Foundation
+  mach_30_legacy_logo:
+    description: Mach 30 Foundation logo
+    targetFilePaths:
+      - images/mach_30_legacy_logo.png
+  mach_30_foundation_notes:
+    description:
+      - >-
+        Much of the methodologies discussed in the paper are adopted from an organization calle Mach 30 - a US-based non-profit space hardeware development
+  shepard_test_stand:
+    description: Shepard Test Stand
+  fire_smoke_and_open_source_hardware_image:
+    description: Fire, Smoke, and Open Source Hardware
+    targetFilePaths:
+      - images/fire_smoke_and_open_source_hardware.webp
+  fire_smoke_and_open_source_hardware_url:
+    description: >-
+      https://www.socallinuxexpo.org/scale/20x/presentations/fire-smoke-and-open-source-hardware
+  fire_smoke_and_open_source_hardware_notes:
+    description: >
+      * They presented this past March at SCaLE, which you can watch at this link
+
+      * in which they showcased a project called Shepard - a test stand designed for Estes model rockets, certified as https://certification.oshwa.org/us000006.html[OSHW US000006] under the auspice of the Open Source Hardware Association (OSHWA)
+
+      * Its one of the earliest certification no. on the planet
+
+      * So successful, the project has been "forked" twice, one featured at the Coca cola Science Center and a father & son referred to as the Jones Boys rocketry that went off and won several science fair projects, including one organized by AIAA - the professional association for aerospace engineers
+
+      * Hence, making for a candidate case study for OSHW development, particularly in aerospace
+
+  oshwa_certified_projects_images:
+    description: OSHWA Certified Projects
+    targetFilePaths:
+      - images/oshwa_certified_projects.png
+  oshwa_certified_projects_url:
+    description: https://certification.oshwa.org/list.html
+  oshwa_certified_projects_notes:
+    description: >
+      * For context, we're currently now at over 2500 certified OSHW projects on the OSHWA database
+
+      * You can search and look at the list of current certified project at this URL
+
+  open_source_hardware_definition:
+    description: Open Source Hardware Definition
+  oshw_logo:
+    description: OSHW logo
+    targetFilePaths:
+      - images/oshwa_logo.jpg
+  open_source_hardware_description:
+    description: >
+      _“Open Source Hardware (OSHW) is a term for tangible artifacts
+
+      — machines, devices, or other physical things
+
+      — whose design has been released to the public in such a way that anyone can make, modify, distribute, and use those things.”_ - https://www.oshwa.org/definition/[The Definition of OSHW]
+
+
+      https://www.oshwa.org/definition
+
+  open_source_hardware_description_notes:
+    description: >
+      * One of the core tenants the Shepard team leaned into is the OSHW definition established by the OSHWA
+
+      * tangible artifacts (machines, devices, or other physical things) whose design has been released to the public in such a way that anyone can make, modify, distribute, and use those things.
+
+      * essentially the OSS definition, but where tangible artifacts are the compiled binary equivalent for an OSHW project
+
+  dof:
+    description: Distributed OSHW Framework (DOF)
+  oshw_should_be_like_oss:
+    description: Approach to capturing the "source" of OSHW like OSS
+  dof_data_model:
+    description: >
+      * *Bill of Materials* (BoM) data
+
+      * *Assembly Instructions* data
+
+      * Supporting Material (e.g., design files, schematics, operating instructions)
+
+  dof_url:
+    description: https://github.com/dof-initiative
+  dof_notes:
+    description: >
+      * Through a series of agile retrospectives, the Shepard team discovered that as the project grew in complexity, the description of the project became unmaintainable
+
+      * e.g., you make one part change and all hell breaks loose trying to find every section of every document where that part is referenced
+
+      * i.e., documents are not *DRY*; they don't conform to *don't repeat yourself*
+
+      * So the conclusion was a need for (not a tool, but rather) a methodology to persisting "souce" of an OSHW project
+
+      * This includes the *bill of materials* data (i.e., the list of parts and tools that need to be procured before you can build the project), the *assembly instructions* needed to put the project together, and any remaining *supporting material* (i.e., CAD files, schematics, operating instructions)
+
+  oshw_should_leverage_oss_tools:
+    description: Why re-invent tools for OSHW that OSS tools already solve
+  git_logo:
+    description: Git logo
+    targetFilePaths:
+      - images/Git-Logo-1788C.svg
+  npm_logo:
+    description: NPM logo
+    targetFilePaths:
+      - images/Npm-logo.svg
+  yarn_logo:
+    description: Yarn logo
+    targetFilePaths:
+      - images/Yarn-logo-kitten.svg
+  gradle_logo:
+    description: Gradle logo
+    targetFilePaths:
+      - images/Gradle_logo.png
+  jinja_logo:
+    description: Jinja logo
+    targetFilePaths:
+      - images/jinjalogo.svg
+  oshw_should_leverage_oss_tools_notes:
+    description: >
+      * Without getting too into the weeds of the core DOF data model,
+
+      * OSS tools already have a decade-plus start in terms of solving problems, like version control for branch, forking, and merging a project, or diffing part no. changes in a BOM, or things like dependency management for OSHW projects reused across other projects, albeit as a part or tool
+
+      * Imagine running `npm install arduino-uno` and import all the description to be able to use an arduino-uno as a dependency in your project
+
+  m30ml:
+    description: >
+      * modeling language for domain-specific languages (DSLs) on the local filesystem
+
+      * DOF is merely a DSL of m30ml
+
+      * OSHW standards https://github.com/oshwa/oshw-standards
+
+  m30ml_notes:
+    description: >
+      * and because this is very MVP, DOF has since split into another base project called Mach 30 modeling language (or m30ml), to be able to model more generic concepts, s.a., actors, or user stories
+
+      * because one of the working groups we're support is a standards group with OSHWA to accommodate OSHW in medical or aerospace industry that may have some kind of regulatory standard
+
+      * which you can follow at this link
+
+  dof_cubesat:
+    description: DOF-CubeSat
+  dof_cubesat_description:
+    description: Extension of DOF for CubeSats
+  n2chart_image:
+    description: N2 chart example
+    targetFilePaths:
+      - images/n2chart_example.png
+  dof_cubesat_url:
+    description: https://github.com/ODU-CGA-CubeSat/dof-cubesat
+  cubesat_cli_url:
+    description: https://github.com/ODU-CGA-CubeSat/cubesat-cli
+  dof_cubesat_notes:
+    description: >
+      * Sealion team is also developing extension of DOF, called DOF-CubeSat, to support concepts s.a., interfaces and junctions as to allow generating system model views such as this N2chart
+
+      * and to support a growing ecosystem of open-source cubesat developers, the DOF-CubeSat schema also serves as a spec for tooling implementors to use as a set of machine-readable requirements that you can just parse from whatever flavor programming language of choice
+
+      * but regardless of what tool you use, the underlying data model of how your projects persist on disk will remain consistent, so you can ensure your deployable lightsail project can be used for future cubesat mission, so that someone else comes along can `npm install lightsail` in their cubesat project and just focus on their mission-specific payload
+
