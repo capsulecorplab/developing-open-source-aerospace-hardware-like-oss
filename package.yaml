@@ -28,4 +28,5 @@ dependencies:
   '@asciidoctor/reveal.js': ^5.2.0
   '@rse/nunjucks-cli': ^1.5.3
   asciidoctor: ^3.0.4
+  reveal.js: ^4.6.1
   yaml-datastore: github:capsulecorplab/yaml-datastore#dist
